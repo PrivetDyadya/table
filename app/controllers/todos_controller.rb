@@ -1,25 +1,44 @@
 class TodosController < ApplicationController
 
 	def index
-		@todos = Todo.where(done: false)
-		@todone = Todo.where(done: true)
+		@todos = Todos.where(done: false)
+		@todone = Todos.where(done: true)
 	end
 
 	def new
-		@todo = Todo.new
+		@todo = Todos.new
+	end
+
+	def todo_params
+		params.require(:todos).permit(:name, :done)
 	end
 
 
-	def todo_params
-		@todo = Todo.new(todo_params)
+	def create
+		@todo = Todos.new(todo_params)
 
 		if @todo.save
-			redirect_to todo_index_path, :notice => "Your todo item was created"
+			redirect_to todos_path(@todo), :notice => "Your todo item was created"
 		else
 			render "new"
 		end
 	end
 
+	def update
+		@todo = Todos.find(params[:id])
+
+		if @todo.update_attribute(:done, true)
+			redirect_to todos_index_path, :notice => "Your todo item was marked as done"
+		else
+			redirect_to todos_index_path, :notice => "Your todo item was !NOT! marked as done"
+		end
+	end
+
+	def destroy
+		@todo = Todos.find(params[:id])
+		@todo.destroy
+		redirect_to todos_index_path, :notice => "TODO item was deleted"
+	end
 
 
 
