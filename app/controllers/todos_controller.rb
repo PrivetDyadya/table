@@ -28,16 +28,16 @@ class TodosController < ApplicationController
 		@todo = Todos.find(params[:id])
 
 		if @todo.update_attribute(:done, true)
-			redirect_to todos_index_path, :notice => "Your todo item was marked as done"
+			redirect_to todo_path(@todo), :notice => "Your todo item was marked as done"
 		else
-			redirect_to todos_index_path, :notice => "Your todo item was !NOT! marked as done"
+			redirect_to todo_path(@todo), :notice => "Your todo item was !NOT! marked as done"
 		end
 	end
 
 	def destroy
 		@todo = Todos.find(params[:id])
 		@todo.destroy
-		redirect_to todos_path(@todo), :notice => "TODO item was deleted"
+		redirect_to todo_path(@todo), :notice => "TODO item was deleted"
 	end
 
 
