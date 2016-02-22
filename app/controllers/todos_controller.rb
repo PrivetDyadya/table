@@ -37,7 +37,7 @@ class TodosController < ApplicationController
 	def destroy
 		@todo = Todos.find(params[:id])
 		@todo.destroy
-		redirect_to todos_index_path, :notice => "TODO item was deleted"
+		redirect_to todos_path(@todo), :notice => "TODO item was deleted"
 	end
 
 
