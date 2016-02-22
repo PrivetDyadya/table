@@ -9,6 +9,8 @@ class TodosController < ApplicationController
 		@todo = Todos.new
 	end
 
+	
+
 	def todo_params
 		params.require(:todos).permit(:name, :done)
 	end
@@ -37,7 +39,7 @@ class TodosController < ApplicationController
 	def destroy
 		@todo = Todos.find(params[:id])
 		@todo.destroy
-		redirect_to todo_path(@todo), :notice => "TODO item was deleted"
+		redirect_to root_path, :notice => "TODO item was deleted"
 	end
 
 
