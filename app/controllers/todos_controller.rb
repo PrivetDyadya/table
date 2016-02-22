@@ -30,9 +30,9 @@ class TodosController < ApplicationController
 		@todo = Todos.find(params[:id])
 
 		if @todo.update_attribute(:done, true)
-			redirect_to todo_path(@todo), :notice => "Your todo item was marked as done"
+			redirect_to root_path, :notice => "Your todo item was marked as done"
 		else
-			redirect_to todo_path(@todo), :notice => "Your todo item was !NOT! marked as done"
+			redirect_to root_path, :notice => "Your todo item was !NOT! marked as done"
 		end
 	end
 
