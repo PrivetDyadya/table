@@ -2,7 +2,7 @@ class HomeController < ApplicationController
 
 	def index
 		if user_signed_in?
-			redirect to :controller => 'todo', :actioon => 'index'
+			redirect_to :controller => 'todos', :actioon => 'index'
 		end
 
 	end
